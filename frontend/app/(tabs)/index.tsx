@@ -1,74 +1,165 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useState } from "react";
+import { useRouter } from "expo-router";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons"; // Icons for email & password fields
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const LoginScreen = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [secureText, setSecureText] = useState(true);
 
-export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <View style={styles.container}>
+      {/* {/<Image source={require("../assets/logo.png")} style={styles.logo} />/} */}
+      <Text style={styles.title}>EVsync</Text>
+      <Text style={styles.subtitle}>Let's Travel Together</Text>
+
+      {/* Email Input */}
+      <View style={styles.inputContainer}>
+        <Ionicons
+          name="mail-outline"
+          size={20}
+          color="#ccc"
+          style={styles.icon}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <TextInput
+          placeholder="Email Address"
+          placeholderTextColor="#aaa"
+          style={styles.input}
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+        />
+      </View>
+
+      {/* Password Input */}
+      <View style={styles.inputContainer}>
+        <Ionicons
+          name="lock-closed-outline"
+          size={20}
+          color="#ccc"
+          style={styles.icon}
+        />
+        <TextInput
+          placeholder="Password"
+          placeholderTextColor="#aaa"
+          style={styles.input}
+          secureTextEntry={secureText}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity onPress={() => setSecureText(!secureText)}>
+          <Ionicons
+            name={secureText ? "eye-off-outline" : "eye-outline"}
+            size={20}
+            color="#aaa"
+          />
+        </TouchableOpacity>
+      </View>
+
+      {/* Sign In Button */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push("/Exhaust")}
+      >
+        <Text style={styles.buttonText}>Sign In</Text>
+        <Ionicons name="arrow-forward" size={20} color="#fff" />
+      </TouchableOpacity>
+
+      {/* Bottom Links */}
+      <View style={styles.bottomLinks}>
+        <Text style={styles.text}>Don't Have An Account? </Text>
+        <TouchableOpacity>
+          <Text style={styles.linkText}>Signup</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity>
+        <Text style={styles.forgotText}>Forget Password</Text>
+      </TouchableOpacity>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#111", // Dark background
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  logo: {
+    width: 80,
+    height: 80,
+    marginBottom: 10,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#00A99D", // Teal
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#aaa",
+    marginBottom: 20,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#222",
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+    marginBottom: 15,
+    width: "100%",
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    color: "#fff",
+  },
+  button: {
+    flexDirection: "row",
+    backgroundColor: "#00A99D",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginRight: 5,
+  },
+  bottomLinks: {
+    flexDirection: "row",
+    marginTop: 20,
+  },
+  text: {
+    color: "#aaa",
+  },
+  linkText: {
+    color: "#00A99D",
+    fontWeight: "bold",
+  },
+  forgotText: {
+    color: "#00A99D",
+    marginTop: 10,
   },
 });
+
+export default LoginScreen;
