@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
-
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import Navbar from "./Navbar";
 export default function HeartRateScreen() {
   return (
     <View style={styles.container}>
@@ -48,6 +48,7 @@ export default function HeartRateScreen() {
           <Text style={styles.cardValue}>95 SpO2</Text>
         </View>
       </View>
+      <Navbar />
     </View>
   );
 }
@@ -55,82 +56,81 @@ export default function HeartRateScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: "#121212",
     padding: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   navbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
     marginBottom: 40,
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#00ffcc',
+    fontWeight: "bold",
+    color: "#00ffcc",
   },
   heartRateContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 10,
   },
   heartRateText: {
     fontSize: 50,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginHorizontal: 5,
   },
   bpmText: {
     fontSize: 20,
-    color: 'white',
+    color: "white",
   },
   statusText: {
     fontSize: 16,
-    color: 'white',
+    color: "white",
     marginBottom: 15,
   },
   precautionsTitle: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginBottom: 5,
   },
   precautionsText: {
     fontSize: 14,
-    color: 'lightgray',
+    color: "lightgray",
   },
   addButton: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     width: 50,
     height: 50,
     borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 20,
   },
   bottomContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
   },
   card: {
-    backgroundColor: '#1c1c1e',
+    backgroundColor: "#1c1c1e",
     borderRadius: 12,
     padding: 15,
-    width: '45%',
-    alignItems: 'center',
+    width: "45%",
+    alignItems: "center",
   },
   cardTitle: {
     fontSize: 12,
-    color: 'lightgray',
+    color: "lightgray",
   },
   cardValue: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginTop: 5,
   },
 });
-
