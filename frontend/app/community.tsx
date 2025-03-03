@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
-
+import Navbar from "./Navbar";
 export default function CommunityScreen() {
   return (
     <ScrollView style={styles.container}>
@@ -40,10 +40,8 @@ export default function CommunityScreen() {
 
       {/* Featured Image Section */}
       <View style={styles.imageContainer}>
-       
-         
-          <Image source={require('./bike.png')} style={styles.cardImage} />
-        
+        <Image source={require("./bike.png")} style={styles.cardImage} />
+
         <View style={styles.imageOverlay}>
           <View>
             <Text style={styles.imageTitle}>Newest Bike</Text>
@@ -73,6 +71,7 @@ export default function CommunityScreen() {
           </View>
         ))}
       </View>
+      <Navbar />
     </ScrollView>
   );
 }
@@ -204,7 +203,7 @@ const styles = StyleSheet.create({
     color: "lightgray",
   },
   cardImage: {
-    width: '100%',
+    width: "100%",
     height: 175,
   },
 });

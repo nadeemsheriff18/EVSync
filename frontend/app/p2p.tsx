@@ -11,6 +11,7 @@ import {
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage"; // To store JWT token
+import Navbar from "./Navbar";
 
 const API_URL = "http://localhost:5000"; // Ensure this is your actual backend URL
 
@@ -45,14 +46,14 @@ export default function BatteryScreen() {
       Alert.alert("Error", "Please enter both supply and cost.");
       return;
     }
-  
+
     try {
       await axios.post(`${API_URL}/request`, {
         userId: "65ca1f1d9b3e3a2f0c4e4bcd", // Use an existing MongoDB Rider _id
         supply: parseInt(supply),
         cost: parseInt(cost),
       });
-  
+
       Alert.alert("Success", "Charging request sent successfully!");
       setSupply("");
       setCost("");
@@ -61,7 +62,6 @@ export default function BatteryScreen() {
       console.error("Error sending request:", error);
     }
   };
-  
 
   return (
     <View style={styles.container}>
@@ -132,34 +132,90 @@ export default function BatteryScreen() {
         renderItem={({ item }) => (
           <View style={styles.requestItem}>
             <Text style={styles.requestText}>
-              {item.userId?.name || "Unknown"} offers {item.supply}W for ₹{item.cost}
+              {item.userId?.name || "Unknown"} offers {item.supply}W for ₹
+              {item.cost}
             </Text>
           </View>
         )}
       />
+      <Navbar />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#121212", padding: 15 },
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 15 },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 15,
+  },
   headerTitle: { fontSize: 20, fontWeight: "bold", color: "#00ffcc" },
   headerIcons: { flexDirection: "row", gap: 15 },
-  batteryCard: { backgroundColor: "#004d40", borderRadius: 12, padding: 20, alignItems: "center" },
+  batteryCard: {
+    backgroundColor: "#004d40",
+    borderRadius: 12,
+    padding: 20,
+    alignItems: "center",
+  },
   batteryPercentage: { fontSize: 40, fontWeight: "bold", color: "white" },
   batteryTime: { fontSize: 14, color: "lightgray", marginTop: 5 },
-  analyticsButton: { flexDirection: "row", alignItems: "center", marginTop: 10, alignSelf: "flex-end" },
+  analyticsButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    alignSelf: "flex-end",
+  },
   analyticsText: { fontSize: 14, color: "white", marginRight: 5 },
-  p2pContainer: { backgroundColor: "#008080", borderRadius: 12, padding: 15, marginTop: 20 },
+  p2pContainer: {
+    backgroundColor: "#008080",
+    borderRadius: 12,
+    padding: 15,
+    marginTop: 20,
+  },
   p2pTitle: { fontSize: 18, fontWeight: "bold", color: "white" },
-  p2pInputContainer: { flexDirection: "row", justifyContent: "space-between", marginTop: 10 },
-  inputBox: { backgroundColor: "#2c2c2e", borderRadius: 10, padding: 10, width: "48%" },
+  p2pInputContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
+  inputBox: {
+    backgroundColor: "#2c2c2e",
+    borderRadius: 10,
+    padding: 10,
+    width: "48%",
+  },
   inputLabel: { fontSize: 12, color: "lightgray" },
-  inputField: { fontSize: 18, fontWeight: "bold", color: "white", borderBottomWidth: 1, borderBottomColor: "white", paddingVertical: 5 },
-  requestButton: { backgroundColor: "#b33c00", paddingVertical: 10, borderRadius: 8, marginTop: 15, flexDirection: "row", justifyContent: "center", alignItems: "center" },
+  inputField: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
+    paddingVertical: 5,
+  },
+  requestButton: {
+    backgroundColor: "#b33c00",
+    paddingVertical: 10,
+    borderRadius: 8,
+    marginTop: 15,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   requestButtonText: { color: "white", fontWeight: "bold", fontSize: 16 },
-  requestListTitle: { fontSize: 18, fontWeight: "bold", color: "white", marginTop: 20 },
-  requestItem: { backgroundColor: "#2c2c2e", padding: 10, borderRadius: 8, marginTop: 10 },
+  requestListTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    marginTop: 20,
+  },
+  requestItem: {
+    backgroundColor: "#2c2c2e",
+    padding: 10,
+    borderRadius: 8,
+    marginTop: 10,
+  },
   requestText: { fontSize: 14, color: "white" },
 });
