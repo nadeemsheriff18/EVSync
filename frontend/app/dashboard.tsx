@@ -10,6 +10,8 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
+import Navbar from "./Navbar";
+
 export default function DashboardScreen() {
   const router = useRouter();
 
@@ -173,6 +175,7 @@ export default function DashboardScreen() {
           />
         </TouchableOpacity>
       </LinearGradient>
+      <Navbar />
     </ScrollView>
   );
 }

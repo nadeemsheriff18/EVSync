@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, FlatList, Alert, StyleSheet } from "react-native";
+import Navbar from "./Navbar";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  FlatList,
+  Alert,
+  StyleSheet,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_BASE = "http://localhost:5000";
@@ -7,7 +16,7 @@ const API_BASE = "http://localhost:5000";
 const PeerToPeerCharging = () => {
   const [supply, setSupply] = useState("");
   const [cost, setCost] = useState("");
-  
+
   const [batteryLevel, setBatteryLevel] = useState(13); // Mock battery level (73%)
 
   type Request = {
@@ -16,9 +25,9 @@ const PeerToPeerCharging = () => {
     supply: number;
     cost: number;
   };
-  
+
   const [requests, setRequests] = useState<Request[]>([]);
-  
+
   useEffect(() => {
     fetchRequests();
   }, []);
@@ -30,7 +39,11 @@ const PeerToPeerCharging = () => {
     }
 
     const storedUsername = await AsyncStorage.getItem("username");
-    const requestData = { username: storedUsername, supply: Number(supply), cost: Number(cost) };
+    const requestData = {
+      username: storedUsername,
+      supply: Number(supply),
+      cost: Number(cost),
+    };
 
     try {
       const response = await fetch(`${API_BASE}/request`, {
@@ -107,10 +120,13 @@ const PeerToPeerCharging = () => {
             <Text style={styles.requestText}>
               <Text style={styles.bold}>{item.username}</Text> is requesting
             </Text>
-            <Text style={styles.requestDetails}>{item.supply} W for ₹{item.cost}</Text>
+            <Text style={styles.requestDetails}>
+              {item.supply} W for ₹{item.cost}
+            </Text>
           </View>
         )}
       />
+      <Navbar />
     </View>
   );
 };
