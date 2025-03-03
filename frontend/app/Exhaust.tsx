@@ -88,6 +88,7 @@ const HomeScreen: React.FC = () => {
     exhaustSounds[0]
   );
   const [activeTab, setActiveTab] = useState<"popular" | "browse">("popular");
+  const [activeNav, setActiveNav] = useState<string>("Home");
   const [displayedSounds, setDisplayedSounds] = useState<ExhaustSound[]>([
     ...exhaustSounds,
   ]);
@@ -95,7 +96,6 @@ const HomeScreen: React.FC = () => {
   const [timeFilter, setTimeFilter] = useState<string>("All Time");
   const [profileModalVisible, setProfileModalVisible] =
     useState<boolean>(false);
-  const [activeNav, setActiveNav] = useState<string>("Home");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
