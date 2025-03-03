@@ -113,7 +113,10 @@ export default function DashboardScreen() {
           onPress={() => router.push("/community")}
         >
           <Text style={styles.cardTitle}>Rider's Community</Text>
-          <Image source={require("./chat.png")} style={styles.cardImage} />
+          <Image
+            source={require("../assets/images/community.jpg")}
+            style={styles.cardImage}
+          />
           <Ionicons
             name="arrow-forward"
             size={24}
@@ -134,7 +137,10 @@ export default function DashboardScreen() {
           onPress={() => router.push("/heartrate")}
         >
           <Text style={styles.cardTitle}>Health Monitor</Text>
-          <Image source={require("./chat.png")} style={styles.cardImage} />
+          <Image
+            source={require("../assets/images/vital.jpg")}
+            style={styles.cardImage}
+          />
           <Ionicons
             name="arrow-forward"
             size={24}
@@ -155,7 +161,10 @@ export default function DashboardScreen() {
           onPress={() => router.push("/p2p")}
         >
           <Text style={styles.cardTitle}>Battery Sharing</Text>
-          <Image source={require("./chat.png")} style={styles.cardImage} />
+          <Image
+            source={require("../assets/images/battery.jpg")}
+            style={styles.cardImage}
+          />
           <Ionicons
             name="arrow-forward"
             size={24}
