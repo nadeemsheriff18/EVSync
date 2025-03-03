@@ -20,21 +20,27 @@ const LoginScreen = () => {
       Alert.alert("Error", "Please fill all fields.");
       return;
     }
-
+  
     const endpoint = isLogin ? "/login" : "/register";
     const payload = isLogin ? { email, password } : { name, email, password };
-
+  
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
+  
       const data = await response.json();
       if (response.ok) {
         if (isLogin) {
-          Alert.alert("Success", "Login successful!");
+          const username = email.split("@")[0]; // Extract username before '@'
+  
+          // Store username & token in localStorage
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("username", username);
+  
+          Alert.alert("Success", `Login successful! Welcome, ${username}.`);
           router.push("/dashboard");
         } else {
           Alert.alert("Success", "Registration successful! Please log in.");
